@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +19,6 @@ import java.io.Serializable;
 public class Cartao implements Serializable {
 
 	private String numero;
-	private String limiteDisponivel;
+	private BigDecimal limiteDisponivel;
 
 }
