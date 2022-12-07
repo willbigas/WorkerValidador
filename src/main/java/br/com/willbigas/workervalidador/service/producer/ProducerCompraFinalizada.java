@@ -19,7 +19,7 @@ public class ProducerCompraFinalizada {
 	private final Queue queue;
 	private final ObjectMapper mapper;
 
-	public void enviarFilaCompraFinalizada(Pedido pedido) throws JsonProcessingException {
+	public void produzirMensagem(Pedido pedido) throws JsonProcessingException {
 		log.info("Enviando Mensagem {} para a fila {}", pedido.toString() , queue.getName());
 		rabbitTemplate.convertAndSend(queue.getName() , mapper.writeValueAsString(pedido));
 	}

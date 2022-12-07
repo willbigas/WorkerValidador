@@ -1,5 +1,6 @@
 package br.com.willbigas.workervalidador.service.consumer;
 
+import br.com.willbigas.workervalidador.exceptions.BusinessException;
 import br.com.willbigas.workervalidador.model.Pedido;
 import br.com.willbigas.workervalidador.service.EmailService;
 import br.com.willbigas.workervalidador.service.ValidadorService;
@@ -32,8 +33,8 @@ public class ConsumerCompraFinalizada {
 		try {
 			validadorService.validarPedido(pedido);
 			emailService.notificarClienteCompraFinalizada(pedido.getEmail() , pedido.getId().toString());
-			producerCompraFinalizada.enviarFilaCompraFinalizada(pedido);
-		} catch (Exception e) {
+			producerCompraFinalizada.produzirMensagem(pedido);
+		} catch (BusinessException e) {
 			emailService.notificarClienteLimiteInsuficiente(pedido.getEmail() , pedido.getId().toString());
 		}
 	}
